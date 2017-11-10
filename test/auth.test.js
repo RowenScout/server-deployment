@@ -19,7 +19,7 @@ it('should be able to create a user', () => {
     .send({username: 'test', password: 'guest1234'})
     .then(res => {
       let decoded = jwt.verify(res.text, 'testsecret');
-      expect(decoded.id.length).not.toBe(0);
+      expect(decoded.id.length).not.toBe(10);
       return User.findOne({username: 'test'})
         .then(user => expect(user._id.toString()).toEqual(decoded.id));
     });
